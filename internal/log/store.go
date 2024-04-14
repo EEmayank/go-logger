@@ -16,6 +16,11 @@ const (
 	lenWidth = 8
 )
 
+// BaseStore is the interface that any log store needs to implement
+type BaseStore interface {
+	Append(p []byte) (n uint64, pos uint64, err error)
+}
+
 // store is a simple wrapper around a file with two APIs to append and read butyes to and from the file
 type store struct {
 	*os.File
